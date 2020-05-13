@@ -37,8 +37,8 @@ public class Film {
     @Column(name = "year")
     private Year year;
 
-    @Column(name ="recommended_age")
-    private Integer recommendedAge;
+    @Column(name ="duration")
+    private Integer duration;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "film")
     private List<CategoryFilms> categoryFilms;

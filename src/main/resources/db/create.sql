@@ -2,14 +2,12 @@
 create schema if not exists netflix2;
 use netflix2;
 
-# drop table if exists awards_casts;
 drop table if exists categories_films;
 drop table if exists casts;
 drop table if exists films;
 drop table if exists categories;
 drop table if exists persons;
 drop table if exists roles;
-# drop table if exists awards;
 
 create table if not exists categories
 (
@@ -44,19 +42,9 @@ create table if not exists films
   short_desc varchar(256) default null ,
   long_desc varchar(1024) default null ,
   year  year(4) not null ,
-  recommended_age tinyint not null ,
+  duration int not null ,
   primary key (id)
 );
-
-# create table if not exists awards
-# (
-#     id bigint(20) not null auto_increment ,
-#     category_name varchar(128) ,
-#     institution varchar(128) ,
-#     primary key (id),
-#     constraint unique_category_institution unique (category_name, institution)
-#
-# );
 
 create table if not exists casts
 (
@@ -82,13 +70,3 @@ create table if not exists categories_films
     constraint unique_category_film unique (category_id, film_id)
 );
 
-# create table if not exists awards_casts
-# (
-#     id bigint(20) not null auto_increment ,
-#     award_id bigint(20) not null ,
-#     cast_id bigint(20) not null ,
-#     primary key (id),
-#     constraint fk_award_casts_award_id foreign key (award_id) references awards(id),
-#     constraint fk_award_casts_cast_id foreign key (cast_id) references casts(id),
-#     constraint unique_award_cast unique (award_id, cast_id)
-# );

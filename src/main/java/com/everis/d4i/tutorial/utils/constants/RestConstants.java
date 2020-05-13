@@ -7,10 +7,9 @@ public class RestConstants {
 	public static final String SUCCESS = "Success";
 
 	public static final String RESOURCE_CATEGORY = "/categories";
+	public static final String RESOURCE_FILM = "/films";
 
 	public static final String PARAMETER_CATEGORY = "categories";
-
-	public static final String PARAMETER_NAME = "name";
 
 	private RestConstants() {
 		throw new IllegalStateException("Utility Class");
