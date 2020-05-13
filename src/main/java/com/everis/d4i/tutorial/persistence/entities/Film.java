@@ -34,7 +34,7 @@ public class Film {
     @Column(name = "language", nullable = false)
     private String language;
 
-    @Column(name = "duration")
+    @Column(name ="duration")
     private Integer duration;
 
     @Column(name = "short_desc")
