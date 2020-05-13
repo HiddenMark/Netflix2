@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface CategoryService {
 
-//	List<CategoryRest> getCategories() throws NetflixException;
-//
-//	CategoryRest createCategories(final CategoryRest categoryRest) throws NetflixException;
+	List<CategoryRest> getCategories() throws NetflixException;
+
+	CategoryRest createCategories(final CategoryRest categoryRest) throws NetflixException;
 }

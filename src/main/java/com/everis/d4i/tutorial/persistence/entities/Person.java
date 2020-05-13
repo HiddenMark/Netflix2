@@ -28,7 +28,7 @@ public class Person {
     @Column(name = "surname", nullable = false)
     private String surname;
 
-    @Column(name = "birthday_year", nullable = false)
+    @Column(name = "birthday_year")
     private Year year;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "person")

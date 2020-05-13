@@ -24,7 +24,7 @@ create table if not exists persons
     id bigint(20) not null auto_increment ,
     name varchar(128) not null ,
     surname varchar(128) not null,
-    birthday_year year(4) not null,
+    birthday_year year(4) null,
     primary key (id)
 );
 
