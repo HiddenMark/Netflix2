@@ -25,20 +25,23 @@ public class Film {
     @Column(name = "name", nullable = false)
     private String name;
 
+    @Column(name = "year", nullable = false)
+    private Year year;
+
+    @Column(name = "country", nullable = false)
+    private String country;
+
     @Column(name = "language", nullable = false)
     private String language;
+
+    @Column(name = "duration")
+    private Integer duration;
 
     @Column(name = "short_desc")
     private String shortDescription;
 
     @Column(name = "long_desc")
     private String longDescription;
-
-    @Column(name = "year")
-    private Year year;
-
-    @Column(name ="duration")
-    private Integer duration;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "film")
     private List<CategoryFilms> categoryFilms;

@@ -15,14 +15,16 @@ public class FilmRest implements Serializable {
 
     private String name;
 
+    private Integer year;
+
+    private String country;
+
     private String language;
+
+    private Integer duration;
 
     private String shortDescription;
 
     private String longDescription;
-
-    private Integer year;
-
-    private Integer duration;
 
 }

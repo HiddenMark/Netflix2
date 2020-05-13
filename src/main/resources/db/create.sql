@@ -19,10 +19,10 @@ create table if not exists categories
 
 create table if not exists persons
 (
-    id bigint(20) not null auto_increment ,
-    name varchar(128) not null ,
-    surname varchar(128) not null,
-    birthday_year year(4) null,
+    id            bigint(20)   not null auto_increment,
+    name          varchar(128) not null,
+    surname       varchar(128) not null,
+    birthday_year year(4) default null,
     primary key (id)
 );
 
@@ -36,14 +36,15 @@ create table if not exists roles
 
 create table if not exists films
 (
-  id bigint(20) not null auto_increment ,
-  name varchar(256) not null ,
-  language varchar(64) not null,
-  short_desc varchar(256) default null ,
-  long_desc varchar(1024) default null ,
-  year  year(4) not null ,
-  duration int not null ,
-  primary key (id)
+    id         bigint(20)   not null auto_increment,
+    name       varchar(256) not null,
+    year       year(4)      not null,
+    country    varchar(64)  not null,
+    language   varchar(64)  not null,
+    duration   int          not null,
+    short_desc varchar(256)  default null,
+    long_desc  varchar(1024) default null,
+    primary key (id)
 );
 
 create table if not exists casts
