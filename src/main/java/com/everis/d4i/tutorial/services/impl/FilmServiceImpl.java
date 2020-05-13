@@ -5,8 +5,6 @@ import com.everis.d4i.tutorial.json.FilmRest;
 import com.everis.d4i.tutorial.persistence.FilmRepository;
 import com.everis.d4i.tutorial.services.FilmService;
 import org.modelmapper.ModelMapper;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
