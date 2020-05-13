@@ -6,10 +6,9 @@ import com.everis.d4i.tutorial.persistence.FilmRepository;
 import com.everis.d4i.tutorial.services.FilmService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class FilmServiceImpl implements FilmService {
@@ -20,9 +19,7 @@ public class FilmServiceImpl implements FilmService {
     private final ModelMapper modelMapper = new ModelMapper();
 
     @Override
-    public List<FilmRest> getFilms() throws NetflixException {
-        return filmRepository.findAll().stream()
-                       .map(film -> modelMapper.map(film, FilmRest.class))
-                       .collect(Collectors.toList());
+    public Page<FilmRest> getFilms(final Pageable pageable) throws NetflixException {
+        return filmRepository.findAll(pageable).map(film -> modelMapper.map(film, FilmRest.class));
     }
 }

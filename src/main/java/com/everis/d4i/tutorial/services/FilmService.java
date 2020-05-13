@@ -2,11 +2,11 @@ package com.everis.d4i.tutorial.services;
 
 import com.everis.d4i.tutorial.exceptions.NetflixException;
 import com.everis.d4i.tutorial.json.FilmRest;
-
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface FilmService {
 
-	List<FilmRest> getFilms() throws NetflixException;
+	Page<FilmRest> getFilms(Pageable pageable) throws NetflixException;
 
 }
