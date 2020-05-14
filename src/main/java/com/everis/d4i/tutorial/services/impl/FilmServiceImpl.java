@@ -6,6 +6,7 @@ import com.everis.d4i.tutorial.persistence.FilmRepository;
 import com.everis.d4i.tutorial.services.FilmService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,8 +21,8 @@ public class FilmServiceImpl implements FilmService {
     private final ModelMapper modelMapper = new ModelMapper();
 
     @Override
-    public List<FilmRest> getFilms() throws NetflixException {
-        return filmRepository.findAll().stream()
+    public List<FilmRest> getFilms(final Sort sort) throws NetflixException {
+        return filmRepository.findAll(sort).stream()
                        .map(film -> modelMapper.map(film, FilmRest.class))
                        .collect(Collectors.toList());
     }
