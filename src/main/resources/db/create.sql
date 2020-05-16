@@ -2,9 +2,8 @@
 create schema if not exists netflix2;
 use netflix2;
 
-drop table if exists categories_films;
-drop table if exists casts;
 drop table if exists films;
+drop table if exists casts;
 drop table if exists categories;
 drop table if exists persons;
 drop table if exists roles;
@@ -44,7 +43,9 @@ create table if not exists films
   duration int not null ,
   short_desc varchar(256) default null ,
   long_desc varchar(1024) default null ,
-  primary key (id)
+  category_id   bigint(20) default null,
+  primary key (id),
+  constraint fk_films_category_id foreign key (category_id) references categories (id)
 );
 
 create table if not exists casts
@@ -60,14 +61,4 @@ create table if not exists casts
   constraint unique_person_role_film unique (person_id, role_id, film_id)
 );
 
-create table if not exists categories_films
-(
-    id bigint(20) not null auto_increment ,
-    category_id bigint(20) not null ,
-    film_id bigint(20) not null ,
-    primary key (id),
-    constraint fk_categories_films_category_id foreign key (category_id) references categories (id),
-    constraint fk_categories_films_film_id foreign key (film_id) references films(id),
-    constraint unique_category_film unique (category_id, film_id)
-);
 
