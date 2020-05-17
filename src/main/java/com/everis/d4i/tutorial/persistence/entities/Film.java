@@ -34,7 +34,7 @@ public class Film {
     @Column(name = "language", nullable = false)
     private String language;
 
-    @Column(name ="duration")
+    @Column(name = "duration")
     private Integer duration;
 
     @Column(name = "short_desc")
@@ -43,8 +43,8 @@ public class Film {
     @Column(name = "long_desc")
     private String longDescription;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "film")
-    private List<CategoryFilms> categoryFilms;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Category category;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "film")
     private List<Cast> castList;
