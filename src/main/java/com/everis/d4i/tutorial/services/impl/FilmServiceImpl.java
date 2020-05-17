@@ -1,6 +1,5 @@
 package com.everis.d4i.tutorial.services.impl;
 
-import com.everis.d4i.tutorial.exceptions.NetflixException;
 import com.everis.d4i.tutorial.json.FilmRest;
 import com.everis.d4i.tutorial.persistence.FilmRepository;
 import com.everis.d4i.tutorial.services.FilmService;
@@ -21,8 +20,36 @@ public class FilmServiceImpl implements FilmService {
     private final ModelMapper modelMapper = new ModelMapper();
 
     @Override
-    public List<FilmRest> getFilms(final Sort sort) throws NetflixException {
+    public List<FilmRest> getFilmsSortedDynamically(final Sort sort) {
+
         return filmRepository.findAll(sort).stream()
+                       .map(film -> modelMapper.map(film, FilmRest.class))
+                       .collect(Collectors.toList());
+
+    }
+
+    @Override
+    public List<FilmRest> getFilmsSortedByDefault() {
+        return filmRepository.findAllByOrderByYearDesc().stream()
+                       .map(film -> modelMapper.map(film, FilmRest.class))
+                       .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<FilmRest> getFilmsSortedProgrammatically() {
+
+        final Sort sortProgrammatically = Sort.by(Sort.Direction.ASC, "year")
+                                                  .and(Sort.by(Sort.Direction.DESC, "name"));
+
+        return filmRepository.findAll(sortProgrammatically).stream()
+                       .map(film -> modelMapper.map(film, FilmRest.class))
+                       .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<FilmRest> getFilmsByCategorySortedDynamically(final Sort sort) {
+
+        return filmRepository.findAllByCategory_Id(2, sort).stream()
                        .map(film -> modelMapper.map(film, FilmRest.class))
                        .collect(Collectors.toList());
     }

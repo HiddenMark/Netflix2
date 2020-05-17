@@ -1,13 +1,13 @@
 package com.everis.d4i.tutorial.controllers.impl;
 
 import com.everis.d4i.tutorial.controllers.FilmController;
-import com.everis.d4i.tutorial.exceptions.NetflixException;
 import com.everis.d4i.tutorial.json.FilmRest;
 import com.everis.d4i.tutorial.responses.NetflixResponse;
 import com.everis.d4i.tutorial.services.FilmService;
 import com.everis.d4i.tutorial.utils.constants.CommonConstants;
 import com.everis.d4i.tutorial.utils.constants.RestConstants;
 import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.SortDefault;
@@ -36,10 +36,11 @@ public class FilmControllerImpl implements FilmController {
     @ResponseStatus(HttpStatus.OK)
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public NetflixResponse<List<FilmRest>> getFilms(
+            @ApiParam
             @ApiIgnore("default params not useful. Using ApiImplicitParam instead")
-            @SortDefault(value = "year", direction = Sort.Direction.ASC)
-            final Sort sort) throws NetflixException {
+            @SortDefault(value = "year", direction = Sort.Direction.ASC) final Sort sort) {
         return new NetflixResponse<>(CommonConstants.SUCCESS, String.valueOf(HttpStatus.OK), CommonConstants.OK,
-                filmService.getFilms(sort));
+                filmService.getFilmsSortedDynamically(sort));
     }
+
 }
