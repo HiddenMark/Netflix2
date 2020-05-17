@@ -1,7 +1,6 @@
 package com.everis.d4i.tutorial.controllers.impl;
 
 import com.everis.d4i.tutorial.controllers.FilmController;
-import com.everis.d4i.tutorial.exceptions.NetflixException;
 import com.everis.d4i.tutorial.json.FilmRest;
 import com.everis.d4i.tutorial.responses.NetflixResponse;
 import com.everis.d4i.tutorial.services.FilmService;
@@ -10,8 +9,8 @@ import com.everis.d4i.tutorial.utils.constants.RestConstants;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
@@ -34,15 +33,21 @@ public class FilmControllerImpl implements FilmController {
             @ApiImplicitParam(name = "page", dataType = "integer", paramType = "query",
                     value = "Results page you want to retrieve (0..N)", defaultValue = "0"),
             @ApiImplicitParam(name = "size", dataType = "integer", paramType = "query",
-                    value = "Number of entries per page.", defaultValue = "8")
+                    value = "Number of entries per page.", defaultValue = "8"),
+            @ApiImplicitParam(name = "sort", allowMultiple = true, dataType = "string", paramType = "query",
+                    value = "Sorting criteria in the format: property(,asc|desc). " +
+                                    "Default sort order is ascending. " +
+                                    "Multiple sort criteria are supported.")
     })
     @ResponseStatus(HttpStatus.OK)
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public NetflixResponse<Page<FilmRest>> getFilms(
+    public NetflixResponse<Slice<FilmRest>> getFilms(
             @ApiIgnore("ignored because too much stuff. Selection done instead with ApiImplicitParams")
-            @PageableDefault(sort = "id", direction = Sort.Direction.ASC, size = 8) final Pageable pageable
-    ) throws NetflixException {
+            @PageableDefault(sort = "id", direction = Sort.Direction.ASC, size = 8) final Pageable pageable) {
         return new NetflixResponse<>(CommonConstants.SUCCESS, String.valueOf(HttpStatus.OK), CommonConstants.OK,
-                filmService.getFilms(pageable));
+                filmService.getPageOfFilms(pageable));
+
+//        return new NetflixResponse<>(CommonConstants.SUCCESS, String.valueOf(HttpStatus.OK), CommonConstants.OK,
+//                filmService.getFilmsByCategorySliced(2, pageable));
     }
 }
