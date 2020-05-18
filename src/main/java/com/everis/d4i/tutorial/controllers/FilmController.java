@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface FilmController {
 
-    NetflixResponse<List<FilmRest>> getFilms() throws NetflixException;
+    NetflixResponse<List<FilmRest>> getFilmsFilteredBy(Integer categoryId) throws NetflixException;
 }

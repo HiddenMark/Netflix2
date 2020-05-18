@@ -27,8 +27,8 @@ public class FilmControllerImpl implements FilmController {
     @Override
     @ResponseStatus(HttpStatus.OK)
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public NetflixResponse<List<FilmRest>> getFilms() throws NetflixException {
+    public NetflixResponse<List<FilmRest>> getFilmsFilteredBy(final Integer categoryId) throws NetflixException {
         return new NetflixResponse<>(CommonConstants.SUCCESS, String.valueOf(HttpStatus.OK), CommonConstants.OK,
-                filmService.getFilms());
+                filmService.getFilmsFilteredBy());
     }
 }

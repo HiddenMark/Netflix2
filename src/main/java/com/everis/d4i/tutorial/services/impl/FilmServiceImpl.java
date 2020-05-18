@@ -20,7 +20,7 @@ public class FilmServiceImpl implements FilmService {
     private final ModelMapper modelMapper = new ModelMapper();
 
     @Override
-    public List<FilmRest> getFilms() throws NetflixException {
+    public List<FilmRest> getFilmsFilteredBy(final Integer categoryId) throws NetflixException {
         return filmRepository.findAll().stream()
                        .map(film -> modelMapper.map(film, FilmRest.class))
                        .collect(Collectors.toList());

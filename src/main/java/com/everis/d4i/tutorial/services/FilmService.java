@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface FilmService {
 
-	List<FilmRest> getFilms() throws NetflixException;
+	List<FilmRest> getFilmsFilteredBy(Integer categoryId) throws NetflixException;
 
 }
