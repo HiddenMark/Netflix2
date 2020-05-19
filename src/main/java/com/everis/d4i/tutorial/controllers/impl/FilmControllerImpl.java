@@ -1,7 +1,6 @@
 package com.everis.d4i.tutorial.controllers.impl;
 
 import com.everis.d4i.tutorial.controllers.FilmController;
-import com.everis.d4i.tutorial.exceptions.NetflixException;
 import com.everis.d4i.tutorial.json.FilmRest;
 import com.everis.d4i.tutorial.responses.NetflixResponse;
 import com.everis.d4i.tutorial.services.FilmService;
@@ -27,8 +26,9 @@ public class FilmControllerImpl implements FilmController {
     @Override
     @ResponseStatus(HttpStatus.OK)
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public NetflixResponse<List<FilmRest>> getFilmsFilteredBy(final Integer categoryId) throws NetflixException {
+    public NetflixResponse<List<FilmRest>> getFilmsFilteredBy(
+            final Integer duration) {
         return new NetflixResponse<>(CommonConstants.SUCCESS, String.valueOf(HttpStatus.OK), CommonConstants.OK,
-                filmService.getFilmsFilteredBy());
+                filmService.getFilmsFilteredBy(duration));
     }
 }

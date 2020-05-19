@@ -1,6 +1,5 @@
 package com.everis.d4i.tutorial.services.impl;
 
-import com.everis.d4i.tutorial.exceptions.NetflixException;
 import com.everis.d4i.tutorial.json.FilmRest;
 import com.everis.d4i.tutorial.persistence.FilmRepository;
 import com.everis.d4i.tutorial.services.FilmService;
@@ -20,8 +19,8 @@ public class FilmServiceImpl implements FilmService {
     private final ModelMapper modelMapper = new ModelMapper();
 
     @Override
-    public List<FilmRest> getFilmsFilteredBy(final Integer categoryId) throws NetflixException {
-        return filmRepository.findAll().stream()
+    public List<FilmRest> getFilmsFilteredBy(final Integer duration) {
+        return filmRepository.findAllByDurationGreaterThan(duration).stream()
                        .map(film -> modelMapper.map(film, FilmRest.class))
                        .collect(Collectors.toList());
     }
