@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.time.Year;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface FilmRepository extends JpaRepository<Film, Long> {
@@ -19,6 +20,6 @@ public interface FilmRepository extends JpaRepository<Film, Long> {
 
     List<Film> findTop10ByLanguageInOrderByLanguageDesc(Collection<String> possibleLanguages);
 
-    List<Film> findFirstByYearBeforeAndDurationExistsAndCountry(Year year, String country);
+    Optional<Film> findFirstByYearBeforeAndDurationExistsAndCountry(Year year, String country);
 
 }
