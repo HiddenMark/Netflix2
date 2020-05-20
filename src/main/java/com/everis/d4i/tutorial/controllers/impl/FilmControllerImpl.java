@@ -40,7 +40,7 @@ public class FilmControllerImpl implements FilmController {
             @ApiIgnore("default params not useful. Using ApiImplicitParam instead")
             @SortDefault(value = "year", direction = Sort.Direction.ASC) final Sort sort) {
         return new NetflixResponse<>(CommonConstants.SUCCESS, String.valueOf(HttpStatus.OK), CommonConstants.OK,
-                filmService.getFilmsSortedDynamically(sort));
+                filmService.getFilmsByCategorySortedDynamically(sort));
     }
 
 }
