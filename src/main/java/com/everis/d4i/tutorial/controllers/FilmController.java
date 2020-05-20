@@ -7,5 +7,11 @@ import java.util.List;
 
 public interface FilmController {
 
-    NetflixResponse<List<FilmRest>> getFilmsFilteredStaticallyBy(Integer duration);
+    NetflixResponse<List<FilmRest>> getFilmsFilteredDynamicallyBy(String name,
+                                                                  Integer year,
+                                                                  String country,
+                                                                  List<String> languages,
+                                                                  Integer category,
+                                                                  List<String> subcategories,
+                                                                  Integer minimumDuration);
 }

@@ -9,10 +9,7 @@ import com.everis.d4i.tutorial.utils.constants.RestConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,11 +23,23 @@ public class FilmControllerImpl implements FilmController {
     @Override
     @ResponseStatus(HttpStatus.OK)
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public NetflixResponse<List<FilmRest>> getFilmsFilteredStaticallyBy(
-            final Integer minimumDuration) {
+    public NetflixResponse<List<FilmRest>> getFilmsFilteredDynamicallyBy(
+            @RequestParam(name = "name", required = false) final String name,
+            @RequestParam(name = "year", required = false) final Integer year,
+            @RequestParam(name = "country", required = false) final String country,
+            @RequestParam(name = "language", required = false) final List<String> languages,
+            @RequestParam(name = "category", required = false) final Integer category,
+            @RequestParam(name = "subcategory", required = false) final List<String> subcategories,
+            @RequestParam(name = "mimum_duration", required = false) final Integer minimumDuration) {
 
         return new NetflixResponse<>(CommonConstants.SUCCESS, String.valueOf(HttpStatus.OK), CommonConstants.OK,
-                filmService.getFilmsFilteredByMinimumDuration(minimumDuration));
+                filmService.getDynamicallyFiltered(name,
+                        year,
+                        country,
+                        languages,
+                        category,
+                        subcategories,
+                        minimumDuration));
 
     }
 }
