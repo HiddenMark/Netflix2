@@ -2,6 +2,8 @@ package com.everis.d4i.tutorial.persistence;
 
 import com.everis.d4i.tutorial.persistence.entities.Film;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.time.Year;
@@ -21,5 +23,19 @@ public interface FilmRepository extends JpaRepository<Film, Long> {
     List<Film> findTop10ByLanguageInOrderByLanguageDesc(Collection<String> possibleLanguages);
 
     Optional<Film> findFirstByYearBeforeAndDurationExistsAndCountry(Year year, String country);
+
+    @Query(value = "select f from Film f where f.year = :year and f.category.name = :name")
+    List<Film> myOwnJPQLQueryFunctionFilterByYearAndCategory(
+            @Param("year") Year year,
+            @Param("name") String categoryName);
+
+    @Query(value = "")
+    List<Film> myOwnNativeQueryFunctionFilterByYearAndCategory(
+            @Param("year") Year year,
+            @Param("name") String categoryName);
+
+    @Query(value = "select f from Film f where f.language in :languages ")
+    List<Film> myOwnQueryWithAListAsParam(
+            @Param("languages") Collection<String> languages);
 
 }
