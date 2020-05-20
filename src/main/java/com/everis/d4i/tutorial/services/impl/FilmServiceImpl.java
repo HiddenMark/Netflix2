@@ -7,7 +7,6 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.Year;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,24 +25,4 @@ public class FilmServiceImpl implements FilmService {
                        .collect(Collectors.toList());
     }
 
-    @Override
-    public List<FilmRest> getFilmsByCategoryAndSubcategory(final Integer categoryId, final String subcategory) {
-        return filmRepository.findAllByCategory_IdAndShortDescriptionContaining(categoryId, subcategory).stream()
-                       .map(film -> modelMapper.map(film, FilmRest.class))
-                       .collect(Collectors.toList());
-    }
-
-    @Override
-    public List<FilmRest> getFilmsByYearAndCategoryNameWithNativeQuery(final Integer year, final String categoryName) {
-        return filmRepository.myOwnNativeQueryFunctionFilterByYearAndCategory(year, categoryName).stream()
-                       .map(film -> modelMapper.map(film, FilmRest.class))
-                       .collect(Collectors.toList());
-    }
-
-    @Override
-    public List<FilmRest> getFilmsByYearAndCategoryNameWithJPQLQuery(final Integer year, final String categoryName) {
-        return filmRepository.myOwnJPQLQueryFunctionFilterByYearAndCategory(Year.of(year), categoryName).stream()
-                       .map(film -> modelMapper.map(film, FilmRest.class))
-                       .collect(Collectors.toList());
-    }
 }

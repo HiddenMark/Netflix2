@@ -28,22 +28,9 @@ public class FilmControllerImpl implements FilmController {
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public NetflixResponse<List<FilmRest>> getFilmsFilteredStaticallyBy(
             final Integer minimumDuration) {
-        /* In this controller, only a parameter is collected: duration.
-         The rest of examples are commented. Comment/uncomment to explore the other options.
-         All the other returns call the functions with static values; should we want to collect from the user
-         the filtering values, the controller signature and method call should be changed.
-         */
 
         return new NetflixResponse<>(CommonConstants.SUCCESS, String.valueOf(HttpStatus.OK), CommonConstants.OK,
                 filmService.getFilmsFilteredByMinimumDuration(minimumDuration));
 
-//        return new NetflixResponse<>(CommonConstants.SUCCESS, String.valueOf(HttpStatus.OK), CommonConstants.OK,
-//                filmService.getFilmsByCategoryAndSubcategory(3, "black"));
-
-//        return new NetflixResponse<>(CommonConstants.SUCCESS, String.valueOf(HttpStatus.OK), CommonConstants.OK,
-//                filmService.getFilmsByYearAndCategoryNameWithJPQLQuery(2018, "drama"));
-
-//                return new NetflixResponse<>(CommonConstants.SUCCESS, String.valueOf(HttpStatus.OK), CommonConstants.OK,
-//                filmService.getFilmsByYearAndCategoryNameWithNativeQuery(2018, "drama"));
     }
 }
