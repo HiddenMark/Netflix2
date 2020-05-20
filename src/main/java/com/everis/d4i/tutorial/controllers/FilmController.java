@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface FilmController {
 
-    NetflixResponse<List<FilmRest>> getFilmsFilteredBy(Integer duration);
+    NetflixResponse<List<FilmRest>> getFilmsFilteredStaticallyBy(Integer duration);
 }

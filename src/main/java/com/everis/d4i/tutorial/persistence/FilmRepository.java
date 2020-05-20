@@ -22,20 +22,24 @@ public interface FilmRepository extends JpaRepository<Film, Long> {
 
     List<Film> findTop10ByLanguageInOrderByLanguageDesc(Collection<String> possibleLanguages);
 
-    Optional<Film> findFirstByYearBeforeAndDurationExistsAndCountry(Year year, String country);
+    Optional<Film> findFirstByYearBeforeAndDurationIsNotNullAndCountry(Year year, String country);
 
     @Query(value = "select f from Film f where f.year = :year and f.category.name = :name")
     List<Film> myOwnJPQLQueryFunctionFilterByYearAndCategory(
             @Param("year") Year year,
             @Param("name") String categoryName);
 
-    @Query(value = "")
+    @Query(nativeQuery = true,
+            value = "select * " +
+                            "from films " +
+                            "where year = :year " +
+                            "    and category_id = (select id from categories where name = :name);")
     List<Film> myOwnNativeQueryFunctionFilterByYearAndCategory(
-            @Param("year") Year year,
+            @Param("year") Integer year,
             @Param("name") String categoryName);
 
     @Query(value = "select f from Film f where f.language in :languages ")
     List<Film> myOwnQueryWithAListAsParam(
-            @Param("languages") Collection<String> languages);
+            @Param("languages") Collection<String> languageCollection);
 
 }

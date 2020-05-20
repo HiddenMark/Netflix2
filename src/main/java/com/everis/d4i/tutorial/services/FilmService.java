@@ -6,6 +6,11 @@ import java.util.List;
 
 public interface FilmService {
 
-	List<FilmRest> getFilmsFilteredBy(Integer duration);
+	List<FilmRest> getFilmsFilteredByMinimumDuration(Integer duration);
 
+	List<FilmRest> getFilmsByCategoryAndSubcategory(Integer categoryId, String subcategory);
+
+	List<FilmRest> getFilmsByYearAndCategoryNameWithNativeQuery(Integer year, String categoryName);
+
+	List<FilmRest> getFilmsByYearAndCategoryNameWithJPQLQuery(Integer year, String categoryName);
 }
