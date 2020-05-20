@@ -44,6 +44,7 @@ public class Film {
     private String longDescription;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id")
     private Category category;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "film")
