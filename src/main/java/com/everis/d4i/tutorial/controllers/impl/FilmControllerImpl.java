@@ -2,6 +2,7 @@ package com.everis.d4i.tutorial.controllers.impl;
 
 import com.everis.d4i.tutorial.controllers.FilmController;
 import com.everis.d4i.tutorial.json.FilmRest;
+import com.everis.d4i.tutorial.json.FilteringParameters;
 import com.everis.d4i.tutorial.responses.NetflixResponse;
 import com.everis.d4i.tutorial.services.FilmService;
 import com.everis.d4i.tutorial.utils.constants.CommonConstants;
@@ -32,14 +33,18 @@ public class FilmControllerImpl implements FilmController {
             @RequestParam(name = "subcategory", required = false) final List<String> subcategories,
             @RequestParam(name = "mimum_duration", required = false) final Integer minimumDuration) {
 
+        FilteringParameters filters = FilteringParameters.builder()
+                                              .name(name)
+                                              .year(year)
+                                              .country(country)
+                                              .languages(languages)
+                                              .category(category)
+                                              .subcategories(subcategories)
+                                              .minimumDuration(minimumDuration)
+                                              .build();
+
         return new NetflixResponse<>(CommonConstants.SUCCESS, String.valueOf(HttpStatus.OK), CommonConstants.OK,
-                filmService.getDynamicallyFiltered(name,
-                        year,
-                        country,
-                        languages,
-                        category,
-                        subcategories,
-                        minimumDuration));
+                filmService.getDynamicallyFiltered(filters));
 
     }
 }

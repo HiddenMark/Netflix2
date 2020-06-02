@@ -3,6 +3,8 @@ package com.everis.d4i.tutorial.persistence.specifications;
 import com.everis.d4i.tutorial.persistence.entities.Film;
 import org.springframework.data.jpa.domain.Specification;
 
+import java.time.Year;
+
 public class ReusableFilmSpecifications {
 
     private ReusableFilmSpecifications() {
@@ -13,7 +15,7 @@ public class ReusableFilmSpecifications {
         return (root, query, criteriaBuilder) -> criteriaBuilder.like(root.get("name"), "%" + name + "%");
     }
 
-    public static Specification<Film> isYearEqual(final Integer year) {
+    public static Specification<Film> isYearEqual(final Year year) {
         return (root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("year"), year);
     }
 
