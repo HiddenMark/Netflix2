@@ -227,7 +227,7 @@ No other code is necessary at controller or service methods.
 
 #### Static Sorting Pros & Cons
 
-- :x: <span style:"color:red">CON:</span> Only a simple ordering can be done, by a single element, added at the end of the method name.
+- :x: CON: Only a simple ordering can be done, by a single element, added at the end of the method name.
 
 - :x: CON: the queries can get very long and difficult to read as the complexity rises.
 
