@@ -1032,8 +1032,6 @@ public interface Specification<T> {
 *Code Snippet 5.i Specification interface.*
 
 ```Java
-*Code Snippet . Specification interface.*
-
 public static Specification<Film> isYearEqual(final Year year) {
     return (root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("year"), year);
 }
