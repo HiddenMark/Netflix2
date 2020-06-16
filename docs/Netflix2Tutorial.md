@@ -227,13 +227,13 @@ No other code is necessary at controller or service methods.
 
 #### Static Sorting Pros & Cons
 
-- CON: Only a simple ordering can be done, by a single element, added at the end of the method name.
+- :x: <span style:"color:red">CON:</span> Only a simple ordering can be done, by a single element, added at the end of the method name.
 
-- CON: the queries can get very long and difficult to read as the complexity rises.
+- :x: CON: the queries can get very long and difficult to read as the complexity rises.
 
-- PRO: very easy to implement, almost no code involved, spring does all the work behind the curtain
+- :white_check_mark: PRO: very easy to implement, almost no code involved, spring does all the work behind the curtain
 
-- PRO: ordering direction can be indicated.
+- :white_check_mark: PRO: ordering direction can be indicated.
 
 
 ### Dynamic Sorting - Sort
@@ -346,11 +346,11 @@ the ordered result.
 
 #### Dynamic Sorting Pros & Cons
 
-- PRO: complex ordering by more than one element can easily be done.
+- :white_check_mark: PRO: complex ordering by more than one element can easily be done.
 
-- PRO: ordering decided at execution time, not predefined.
+- :white_check_mark: PRO: ordering decided at execution time, not predefined.
 
-- PRO: plays nicely with other Spring Data methods and tools, like method
+- :white_check_mark: PRO: plays nicely with other Spring Data methods and tools, like method
 names.
 
 
@@ -831,18 +831,18 @@ public interface FilmRepository extends JpaRepository<Film, Long> {
 The list of pros and cons of filtering with Derived Query Methods is
 very similar to the sorting one, as the tool is the same:
 
-- CON: the queries can get very long and difficult to read as the
+- :x: CON: the queries can get very long and difficult to read as the
 complexity rises. It is not possible to add line breaks to make them
 more readable.
 
-- CON: null **IS** a possible value in the
+- :x: CON: null **IS** a possible value in the
 database, so I cannot use it to set optional parameters and use it in
 query.
 
-- PRO: very easy to implement, almost no code involved, spring does all
+- :white_check_mark: PRO: very easy to implement, almost no code involved, spring does all
 the work behind the curtain
 
-- PRO: offer a multitude of filtering criteria right out of the hood. Idea
+- :white_check_mark: PRO: offer a multitude of filtering criteria right out of the hood. Idea
 for simple easy cases.
 
 
@@ -968,23 +968,23 @@ List<Film> myOwnNativeQueryFunctionFilterByYearAndCategory(
 
 #### Static Filtering (@Query) Pros and Cons
 
-- PRO: very easy to use.
+- :white_check_mark: PRO: very easy to use.
 
-- PRO: with Native Queries, full control of what is thrown to the
+- :white_check_mark: PRO: with Native Queries, full control of what is thrown to the
 database.
 
-- PRO: with JPQL high code readability
+- :white_check_mark: PRO: with JPQL high code readability
 
-- CON: queries are static strings, cannot be modified at runtime
+- :x: CON: queries are static strings, cannot be modified at runtime
 
-- CON: parameters in the queries are obligatory, cannot be omitted (and
+- :x: CON: parameters in the queries are obligatory, cannot be omitted (and
 NULL **IS** a value)
 
-- CON: with Native Queries, database dependency
+- :x: CON: with Native Queries, database dependency
 
-- CON: with JPQL, possible loss of performance.
+- :x: CON: with JPQL, possible loss of performance.
 
-- CON: the queries are strings, there is no type checking of the
+- :x: CON: the queries are strings, there is no type checking of the
 parameters at compilation time. This means that if I change the code,
 the compiler will not advise me to also change the related queries, and
 they will fail at execution time.
@@ -1116,14 +1116,14 @@ allows us to do *type check at compilation time.*
 
 ### Specifications Pros and Cons
 
-- PRO: filtering is decided at runtime, depending on the parameters
+- :white_check_mark: PRO: filtering is decided at runtime, depending on the parameters
 passed.
 
-- PRO: filters can be reused.
+- :white_check_mark: PRO: filters can be reused.
 
-- PRO: with the metamodel, we can do type check at compilation time.
+- :white_check_mark: PRO: with the metamodel, we can do type check at compilation time.
 
-- CON: without the metamodel, the name of the entities properties is coded
+- :x: CON: without the metamodel, the name of the entities properties is coded
 as a String, and thus cannot be checked at compilation time.
 
 # \*\*\*\* Bonus Content: Projections
