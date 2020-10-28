@@ -1,6 +1,6 @@
 package com.everis.d4i.tutorial.config;
 
-import com.everis.d4i.tutorial.utils.constants.RestConstants;
+import com.everis.d4i.tutorial.util.constant.RestConstants;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
