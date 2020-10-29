@@ -7,6 +7,7 @@ import java.util.Collection;
 
 public interface FilmService {
 
-	Collection<FilmDto> getFilms() throws NetflixException;
+	Collection<FilmDto> getFilms(Collection<String> categoryNameCollection, Collection<String> languageCollection)
+			throws NetflixException;
 
 }

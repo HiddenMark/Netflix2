@@ -35,7 +35,7 @@ public class RoleEntity extends CommonAuditEntity {
     @Column(name = "name", nullable = false, unique = true)
     private String name;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "roleEntity")
-    private Collection<CastEntity> castEntityCollection;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "role")
+    private Collection<CastEntity> casts;
 
 }

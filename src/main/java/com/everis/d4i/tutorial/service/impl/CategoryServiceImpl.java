@@ -1,11 +1,14 @@
 package com.everis.d4i.tutorial.service.impl;
 
 import com.everis.d4i.tutorial.persistence.CategoryRepository;
+import com.everis.d4i.tutorial.persistence.entity.CategoryEntity;
 import com.everis.d4i.tutorial.persistence.mapper.CategoryEntityMapper;
+import com.everis.d4i.tutorial.persistence.specification.CategorySpecification;
 import com.everis.d4i.tutorial.service.CategoryService;
 import com.everis.d4i.tutorial.service.dto.CategoryDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -20,9 +23,12 @@ public class CategoryServiceImpl implements CategoryService {
 
 	private final CategoryEntityMapper categoryEntityMapper;
 
+	private final CategorySpecification categorySpecification;
+
 	@Override
 	public Collection<CategoryDto> getCategories() {
-		return categoryRepository.findAll().parallelStream().map(categoryEntityMapper::mapToDto)
+		final Specification<CategoryEntity> spec = categorySpecification.withFilms();
+		return categoryRepository.findAll(spec).parallelStream().map(categoryEntityMapper::mapToDto)
 				.collect(Collectors.toList());
 	}
 

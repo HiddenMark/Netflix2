@@ -42,7 +42,7 @@ public class PersonEntity extends CommonAuditEntity {
 	@Column(name = "birthday_year")
 	private Year year;
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "personEntity")
-	private Collection<CastEntity> castEntityCollection;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "person")
+	private Collection<CastEntity> casts;
 
 }

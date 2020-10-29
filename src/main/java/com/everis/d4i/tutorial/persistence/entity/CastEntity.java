@@ -35,14 +35,14 @@ public class CastEntity extends CommonAuditEntity {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "person_id", nullable = false)
-	private PersonEntity personEntity;
+	private PersonEntity person;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "role_id", nullable = false)
-	private RoleEntity roleEntity;
+	private RoleEntity role;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "film_id", nullable = false)
-	private FilmEntity filmEntity;
+	private FilmEntity film;
 
 }

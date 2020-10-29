@@ -58,9 +58,9 @@ public class FilmEntity extends CommonAuditEntity {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "category_id")
-	private CategoryEntity categoryEntity;
+	private CategoryEntity category;
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "filmEntity")
-	private Collection<CastEntity> castEntityCollection;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "film")
+	private Collection<CastEntity> casts;
 
 }
