@@ -10,4 +10,6 @@ public interface FilmService {
 	Collection<FilmDto> getFilms(Collection<String> categoryNameCollection, Collection<String> languageCollection)
 			throws NetflixException;
 
+	FilmDto create(FilmDto filmDto) throws NetflixException;
+
 }

@@ -1,5 +1,6 @@
 package com.everis.d4i.tutorial.service.impl;
 
+import com.everis.d4i.tutorial.exception.NetflixException;
 import com.everis.d4i.tutorial.persistence.FilmRepository;
 import com.everis.d4i.tutorial.persistence.entity.FilmEntity;
 import com.everis.d4i.tutorial.persistence.mapper.FilmEntityMapper;
@@ -31,5 +32,10 @@ public class FilmServiceImpl implements FilmService {
 
 		return filmRepository.findAll(spec).parallelStream().map(filmEntityMapper::mapToDto)
 				.collect(Collectors.toList());
+	}
+
+	@Override
+	public FilmDto create(final FilmDto filmDto) throws NetflixException {
+		return filmEntityMapper.mapToDto(filmRepository.save(filmEntityMapper.mapToEntity(filmDto)));
 	}
 }

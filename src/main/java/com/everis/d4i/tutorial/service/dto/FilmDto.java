@@ -31,4 +31,6 @@ public class FilmDto implements Serializable {
 
 	private String longDescription;
 
+	private CategoryDto category;
+
 }

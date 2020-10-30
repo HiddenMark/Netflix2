@@ -10,4 +10,7 @@ public interface FilmController {
 
 	NetflixResponse<FilmRest[]> getFilms(Collection<String> categoryNameCollection, Collection<String> languageCollection)
 			throws NetflixException;
+
+	NetflixResponse<FilmRest> createFilm(FilmRest filmRest)
+			throws NetflixException;
 }

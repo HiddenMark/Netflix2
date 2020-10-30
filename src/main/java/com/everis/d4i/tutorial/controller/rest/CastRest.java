@@ -10,18 +10,24 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class CategoryRest implements Serializable {
+public class CastRest implements Serializable {
 
-	private static final long serialVersionUID = 180802329613616000L;
+	private static final long serialVersionUID = 180802329621611101L;
 
 	@JsonProperty("id")
 	private Long id;
 
-	@JsonProperty("name")
-	private String name;
+	@JsonProperty("person")
+	private PersonRest person;
+
+	@JsonProperty("role")
+	private RoleRest role;
+
+	@JsonProperty("film")
+	private FilmRest film;
 
 }

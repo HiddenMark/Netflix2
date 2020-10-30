@@ -54,5 +54,18 @@ insert into films (id, category_id, name, year, country, language, duration, sho
 ( 36, 2, 'Capernaum (Capharnaüm (کفرناحوم))', 2018, 'Lebanon','Arabic', 126, 'drama film','While serving a five-year sentence for a violent crime, a 12-year-old boy sues his parents for neglect.', now(), now()),
 ( 37, 5, 'Cold War (Zimna wojna)', 2018, 'Poland','Polish', 88, 'historical drama film','In the 1950s, a music director falls in love with a singer and tries to persuade her to flee communist Poland for France.', now(), now()),
 ( 38, 12, 'Never Look Away (Werk ohne Autor)', 2018, 'Germany','German', 188, 'coming-of-age romantic drama film','German artist Kurt Barnert has escaped East Germany and now lives in West Germany, but is tormented by his childhood under the Nazis and the DDR-regime.', now(), now()),
-( 39, 2, 'Shoplifters (Manbiki Kazoku (万引き家族))', 2018, 'Japan','Japanese', 121, 'drama film','A family of small-time crooks take in a child they find outside in the cold.', now(), now())
-;
+( 39, 2, 'Shoplifters (Manbiki Kazoku (万引き家族))', 2018, 'Japan','Japanese', 121, 'drama film','A family of small-time crooks take in a child they find outside in the cold.', now(), now());
+
+insert into roles (id, name, create_date, update_date) values ('1', 'actor', now(), now());
+insert into roles (id, name, create_date, update_date) values ('2', 'director', now(), now());
+insert into roles (id, name, create_date, update_date) values ('3', 'screenwriter', now(), now());
+
+insert into persons (id, name, surname, birthday_year, create_date, update_date) values ('1', 'Leonardo', 'DiCaprio', 1985, now(), now());
+insert into persons (id, name, surname, birthday_year, create_date, update_date) values ('2', 'Angelina', 'Jolie', 1985, now(), now());
+insert into persons (id, name, surname, birthday_year, create_date, update_date) values ('3', 'Seteven', 'Spielberg', 1960, now(), now());
+insert into persons (id, name, surname, birthday_year, create_date, update_date) values ('4', 'James', 'Cameron', 1962, now(), now());
+
+insert into casts (id, person_id, role_id, film_id, create_date, update_date) VALUES ('1', '1', '1', '24', now(), now());
+insert into casts (id, person_id, role_id, film_id, create_date, update_date) VALUES ('2', '2', '1', '28', now(), now());
+insert into casts (id, person_id, role_id, film_id, create_date, update_date) VALUES ('3', '3', '2', '4', now(), now());
+insert into casts (id, person_id, role_id, film_id, create_date, update_date) VALUES ('4', '4', '2', '7', now(), now());

@@ -24,18 +24,26 @@ public class FilmSpecification {
 
 	public Specification<FilmEntity> withCategoryName(final Collection<String> categoryNameCollection) {
 		return (film, query, cb) -> {
-			// JOIN categories C ON F.category_id = C.id
-			final Join<FilmEntity, CategoryEntity> categoriesWithFilms = film.join(FilmEntity_.CATEGORY, JoinType.INNER);
-			// WHERE C.name IN( 'documentary', 'drama')
-			final CriteriaBuilder.In<Object> categoryInPredicate = cb.in(
-					categoriesWithFilms.get(CategoryEntity_.NAME)).value(categoryNameCollection);
-			return cb.and(categoryInPredicate);
+			if (!categoryNameCollection.isEmpty()) {
+				// JOIN categories C ON F.category_id = C.id
+				final Join<FilmEntity, CategoryEntity> categoriesWithFilms = film.join(FilmEntity_.CATEGORY, JoinType.INNER);
+				// WHERE C.name IN( 'documentary', 'drama')
+				final CriteriaBuilder.In<Object> categoryInPredicate = cb.in(
+						categoriesWithFilms.get(CategoryEntity_.NAME)).value(categoryNameCollection);
+				return cb.and(categoryInPredicate);
+			}
+			return null;
 		};
 	}
 
 	public Specification<FilmEntity> withLanguage(final Collection<String> languageCollection) {
 		// WHERE F.language IN ('English', 'Polish');
-		return (film, query, cb) -> cb.in(film.get(FilmEntity_.LANGUAGE)).value(languageCollection);
+		return (film, query, cb) -> languageCollection.isEmpty() ? null :
+				cb.in(film.get(FilmEntity_.LANGUAGE)).value(languageCollection);
+	}
+
+	public Specification<FilmEntity> withCasts() {
+		return (film, query, cb) -> cb.isNotEmpty(film.get(FilmEntity_.CASTS));
 	}
 
 }

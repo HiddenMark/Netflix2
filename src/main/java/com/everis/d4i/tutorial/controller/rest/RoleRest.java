@@ -10,13 +10,13 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class CategoryRest implements Serializable {
+public class RoleRest implements Serializable {
 
-	private static final long serialVersionUID = 180802329613616000L;
+	private static final long serialVersionUID = 1213421013445262864L;
 
 	@JsonProperty("id")
 	private Long id;

@@ -10,4 +10,7 @@ public interface CategoryService {
 	Collection<CategoryDto> getCategories() throws NetflixException;
 
 	CategoryDto createCategory(CategoryDto categoryDto) throws NetflixException;
+
+	CategoryDto findById(Long id) throws NetflixException;
+
 }

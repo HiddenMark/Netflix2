@@ -21,12 +21,12 @@ public class CategorySpecification {
 	public Specification<CategoryEntity> withFilms() {
 		return (category, query, cb) -> {
 			// JOIN categories c ON F.category_id = C.id;
-			final CriteriaBuilder.In<Object> value = cb.in(
+			final CriteriaBuilder.In<Object> categoriesWithFilms = cb.in(
 					category.join(CategoryEntity_.FILMS, JoinType.INNER).get(FilmEntity_.CATEGORY).get(CategoryEntity_.ID)
 			).value(category.get(CategoryEntity_.ID));
 			// DISTINCT
 			query.distinct(true);
-			return value;
+			return categoriesWithFilms;
 		};
 	}
 

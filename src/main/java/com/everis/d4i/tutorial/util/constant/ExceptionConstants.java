@@ -7,5 +7,6 @@ public class ExceptionConstants {
 
 	public static final String ERROR = "ERROR";
 	public static final String INTERNAL_SERVER_ERROR = "INTERNAL_SERVER_ERROR - An internal server error has occurred";
+	public static final String NOT_FOUND = "NOT FOUND - Data has not been found";
 
 }
